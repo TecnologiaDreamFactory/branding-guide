@@ -73,7 +73,10 @@ export default function App() {
             <section className="menu">
                 <header className="intro">
                     <h1 className="intro-mask intro-h1">
-                        <span className="intro-line">Branding Guides Sistema Dream Factory</span>
+                        <span className="intro-line">Branding Guides</span>
+                    </h1>
+                    <h1 className="intro-mask intro-h1">
+                        <span className="intro-line">Sistema Dream Factory</span>
                     </h1>
                     <p className="intro-mask">
                         <span className="intro-line intro-sub">
