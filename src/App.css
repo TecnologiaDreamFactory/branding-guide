@@ -1,0 +1,528 @@
+/* ------------------------------------------------------------------ shell */
+
+.shell {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 88px 88px;
+    opacity: 0.35;
+    -webkit-mask-image: radial-gradient(120% 90% at 30% 40%, #000 0%, transparent 78%);
+    mask-image: radial-gradient(120% 90% at 30% 40%, #000 0%, transparent 78%);
+    pointer-events: none;
+}
+
+.vignette {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(70% 60% at 22% 45%, var(--glow-a), transparent 70%),
+        radial-gradient(60% 60% at 100% 100%, var(--glow-b), transparent 70%);
+    pointer-events: none;
+}
+
+/* ------------------------------------------------------------------- menu */
+
+.menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--gutter);
+    min-width: 0;
+}
+
+.intro {
+    position: relative;
+    z-index: 2;
+}
+
+.intro-mask {
+    overflow: hidden;
+    line-height: 1;
+}
+
+.intro-line {
+    display: block;
+}
+
+.intro-h1 {
+    font-size: clamp(26px, min(4.4vw, 7.2vh), 62px);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+}
+
+.intro-sub {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 340px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--fg-faint);
+    padding-top: clamp(8px, 1.6vh, 18px);
+}
+
+/* lista rolável — wrapper do Lenis */
+.mn-list {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden auto;
+    scrollbar-width: none;
+    margin-top: clamp(18px, 3vh, 40px);
+}
+
+.mn-list::-webkit-scrollbar {
+    display: none;
+}
+
+.mn-scroll {
+    display: grid;
+    gap: clamp(18px, 3vh, 34px);
+    padding-bottom: 8px;
+}
+
+.mn-group {
+    display: grid;
+    gap: clamp(6px, 1vh, 9px);
+    max-width: 340px;
+}
+
+.mn-topic {
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+}
+
+/* estado selecionado = o fim do hover, parado */
+.mn-btn {
+    text-align: left;
+}
+
+.mn-btn.is-active {
+    color: var(--ink);
+}
+
+.mn-btn.is-active::after {
+    transform: scaleX(1);
+}
+
+.theme-seg {
+    display: inline-flex;
+    flex: none;
+    border: 1px solid var(--line);
+}
+
+.theme-seg button {
+    padding: 5px 9px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    transition:
+        color 0.3s ease,
+        background 0.3s ease;
+}
+
+.theme-seg button + button {
+    border-left: 1px solid var(--line);
+}
+
+/* :not(.is-on) — sem isto o hover vence o ativo por especificidade e pinta
+   o texto da mesma cor do fundo dele */
+.theme-seg button:not(.is-on):hover {
+    color: var(--fg);
+}
+
+.theme-seg .is-on {
+    background: var(--fg);
+    color: var(--bg);
+}
+
+/* ------------------------------------------------------------------ painel */
+
+.pn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: var(--gutter) var(--gutter) var(--gutter) 0;
+    padding: clamp(14px, 2.2vh, 24px) clamp(18px, 1.9vw, 30px) clamp(16px, 2.4vh, 26px);
+    min-width: 0;
+    border: 1px solid var(--line);
+    background:
+        linear-gradient(180deg, var(--sheen-a), var(--sheen-b)),
+        var(--panel);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    will-change: clip-path, transform;
+}
+
+/* trama técnica do "wireframe" */
+.pn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.25;
+    -webkit-mask-image: linear-gradient(160deg, #000 0%, transparent 62%);
+    mask-image: linear-gradient(160deg, #000 0%, transparent 62%);
+    pointer-events: none;
+}
+
+.pn,
+.pn-cta,
+.mn-btn {
+    --accent-fg: var(--accent);
+}
+
+:root[data-theme="light"] :is(.pn, .pn-cta, .mn-btn) {
+    --accent-fg: color-mix(in srgb, var(--accent) 62%, #0b0d14);
+}
+
+.pn-bracket {
+    position: absolute;
+    inset: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    fill: none;
+    stroke: var(--accent-fg);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+    pointer-events: none;
+}
+
+.pn-bracket path {
+    stroke-dasharray: 1;
+}
+
+.pn-head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: clamp(10px, 1.6vh, 18px);
+}
+
+.pn-kicker {
+    display: flex;
+    gap: 16px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.pn-kicker > span {
+    display: block;
+    color: var(--accent-fg);
+}
+
+.pn-kicker .pn-dim {
+    color: var(--fg-faint);
+}
+
+.pn-close {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    flex: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.pn-close span {
+    position: absolute;
+    inset: 50% 8px auto;
+    height: 1px;
+    background: var(--fg-dim);
+}
+
+.pn-close span:first-child {
+    transform: rotate(45deg);
+}
+
+.pn-close span:last-child {
+    transform: rotate(-45deg);
+}
+
+.pn-close:hover {
+    border-color: var(--accent-fg);
+    transform: rotate(90deg);
+}
+
+.pn-rule {
+    height: 1px;
+    background: var(--line);
+    transform-origin: left center;
+    flex: none;
+}
+
+.pn-rule--thin {
+    margin: clamp(11px, 2.1vh, 24px) 0;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--line) 0 6px,
+        transparent 6px 12px
+    );
+}
+
+/* corpo rolável — wrapper do Lenis */
+.pn-body {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden auto;
+    scrollbar-width: none;
+    padding-top: clamp(14px, 2.6vh, 30px);
+}
+
+.pn-body::-webkit-scrollbar {
+    display: none;
+}
+
+.pn-scroll {
+    padding-right: 4px;
+    padding-bottom: 4px;
+}
+
+.pn-title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.28em;
+    font-size: clamp(26px, 4.8vh, 52px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+}
+
+.pn-word {
+    display: flex;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+}
+
+.pn-char {
+    display: block;
+    will-change: transform;
+}
+
+.pn-tagline {
+    padding-top: clamp(8px, 1.4vh, 16px);
+    max-width: 46ch;
+    font-size: clamp(12.5px, 1.65vh, 16px);
+    line-height: 1.45;
+    color: var(--fg-dim);
+}
+
+.pn-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: clamp(10px, 1.6vh, 20px);
+}
+
+.pn-meta dt,
+.pn-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+}
+
+.pn-meta dd {
+    padding-top: 6px;
+    font-size: clamp(12px, 1.5vh, 14px);
+    color: var(--fg);
+}
+
+.pn-history {
+    display: grid;
+    gap: clamp(8px, 1.2vh, 14px);
+}
+
+.pn-history p {
+    max-width: 58ch;
+    font-size: clamp(12px, 1.5vh, 14.5px);
+    line-height: 1.62;
+    color: var(--fg-dim);
+}
+
+.pn-palette {
+    padding-top: clamp(14px, 2.4vh, 30px);
+    display: grid;
+    gap: clamp(8px, 1.2vh, 12px);
+}
+
+/* os rotulos ficam FORA do swatch: reserva a altura deles aqui, senao a
+   CTA sobe por cima */
+.pn-swatches {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.pn-swatch {
+    position: relative;
+    flex: 1;
+    height: clamp(28px, 5vh, 48px);
+    border: 1px solid var(--swatch-line);
+    transform-origin: bottom center;
+}
+
+.pn-swatch span {
+    position: absolute;
+    inset: auto 0 -15px 0;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--fg-faint);
+}
+
+.pn-cta,
+.mn-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: clamp(11px, 1.7vh, 17px) 20px;
+    width: 100%;
+    max-width: 340px;
+    border: 1px solid var(--accent-fg);
+    color: var(--accent-fg);
+    font-size: clamp(12px, 1.5vh, 14px);
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    position: relative;
+    transition: color 0.4s ease;
+}
+
+.pn-cta::after,
+.mn-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.pn-cta > *,
+.mn-btn > * {
+    position: relative;
+    z-index: 1;
+}
+
+.pn-cta:hover,
+.mn-btn:hover {
+    color: var(--ink);
+}
+
+.pn-cta:hover::after,
+.mn-btn:hover::after {
+    transform: scaleX(1);
+}
+
+.pn-cta svg,
+.mn-btn svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: square;
+}
+
+/* só o CTA do painel carrega o respiro de cima */
+.pn-cta {
+    margin-top: clamp(16px, 2.8vh, 40px);
+}
+
+/* ------------------------------------------------------------ vazio */
+
+.pn--empty {
+    display: grid;
+    place-items: center;
+    border-style: dashed;
+    border-color: var(--line);
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+.pn-empty-inner {
+    display: grid;
+    gap: 18px;
+    justify-items: center;
+    text-align: center;
+}
+
+.pn-empty-mark {
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    animation: pulse 3.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.18);
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------------------ responsivo */
+
+@media (max-width: 1024px) {
+    body {
+        overflow: auto;
+    }
+
+    .shell {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100dvh;
+    }
+
+    .menu {
+        min-height: 92dvh;
+    }
+
+    .pn {
+        margin: 0 var(--gutter) var(--gutter);
+        min-height: 80dvh;
+    }
+}
