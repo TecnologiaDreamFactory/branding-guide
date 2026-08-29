@@ -41,6 +41,20 @@ export default function App() {
         }
     }, [theme])
 
+    /* mobile: o card fica ABAIXO do menu, entao clicar num botao tem de levar
+     * o olho ate la. Roda em efeito, nao no onClick: o painel so existe no DOM
+     * depois do commit do React. */
+    useEffect(() => {
+        if (!selectedId) return
+        if (!window.matchMedia("(max-width: 1024px)").matches) return
+        document.querySelector(".pn")?.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? "auto"
+                : "smooth",
+            block: "start",
+        })
+    }, [selectedId])
+
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             gsap.timeline({ defaults: { ease: "expo.out", duration: 1.2 } })

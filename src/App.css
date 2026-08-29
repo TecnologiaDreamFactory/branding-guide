@@ -516,16 +516,38 @@
 
     .shell {
         grid-template-columns: 1fr;
+        /* solta a linha travada do desktop: aqui a pagina inteira rola */
+        grid-template-rows: auto;
         height: auto;
         min-height: 100dvh;
     }
 
     .menu {
-        min-height: 92dvh;
+        min-height: auto;
+        padding-bottom: 0;
+    }
+
+    /* quem rola e a PAGINA. Uma lista com scroll proprio dentro de uma pagina
+       que tambem rola vira armadilha de toque no celular */
+    .mn-list {
+        flex: none;
+        overflow: visible;
+    }
+
+    .pn-body {
+        overflow: visible;
+    }
+
+    /* na largura do card */
+    .mn-group,
+    .mn-btn,
+    .pn-cta,
+    .intro-sub {
+        max-width: none;
     }
 
     .pn {
-        margin: 0 var(--gutter) var(--gutter);
-        min-height: 80dvh;
+        margin: var(--gutter);
+        min-height: auto;
     }
 }
