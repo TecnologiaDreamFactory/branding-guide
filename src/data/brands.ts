@@ -17,6 +17,8 @@ export interface Brand {
     history: string[]
     /** link do branding guide (PDF, Figma, Notion, o que for) */
     guideUrl: string
+    /** link da galeria de fotos da marca */
+    photosUrl: string
     /** cor de acento: pinta o botão do menu e a moldura do painel */
     accent: string
     /** paleta exibida no rodapé do painel */
@@ -45,7 +47,8 @@ export const BRANDS: Brand[] = [
         sector: "Holding · Comunicação e Grandes Eventos",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#8AB4FF",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#8AB4FF", "#0B0D14", "#F2F4F8", "#3A5BAF"],
     },
     {
@@ -57,7 +60,8 @@ export const BRANDS: Brand[] = [
         sector: "Evento · Rio de Janeiro",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#FF6B4A",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#FF6B4A", "#1A0F0C", "#FFD9CE", "#B33D22"],
     },
     {
@@ -69,7 +73,8 @@ export const BRANDS: Brand[] = [
         sector: "Evento · Rio de Janeiro",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#16C79A",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#16C79A", "#07140F", "#C9F5E6", "#0B7A5E"],
     },
     {
@@ -81,7 +86,8 @@ export const BRANDS: Brand[] = [
         sector: "Evento · Rio de Janeiro",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#B15CFF",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#B15CFF", "#120A1C", "#E9D8FF", "#6E2FB0"],
     },
     {
@@ -93,7 +99,8 @@ export const BRANDS: Brand[] = [
         sector: "Evento · Rio de Janeiro",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#FF4D7E",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#FF4D7E", "#1B060E", "#FFD3E0", "#B01E4C"],
     },
     {
@@ -105,7 +112,8 @@ export const BRANDS: Brand[] = [
         sector: "Evento · Rio de Janeiro",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#4DD0E1",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#4DD0E1", "#05171A", "#CFF6FB", "#1B7C8A"],
     },
     {
@@ -117,7 +125,8 @@ export const BRANDS: Brand[] = [
         sector: "Evento · Rio de Janeiro",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#FFC53D",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#FFC53D", "#1A1405", "#FFEFC2", "#B3860F"],
     },
     {
@@ -129,7 +138,8 @@ export const BRANDS: Brand[] = [
         sector: "Evento · Rio de Janeiro",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#E152D8",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#E152D8", "#180618", "#FAD5F6", "#8E2B88"],
     },
     {
@@ -141,7 +151,8 @@ export const BRANDS: Brand[] = [
         sector: "Vertical · Grupo Dream",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#FF7A00",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#FF7A00", "#1A0E00", "#FFE0BF", "#B35500"],
     },
     {
@@ -153,7 +164,8 @@ export const BRANDS: Brand[] = [
         sector: "Vertical · Grupo Dream",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#A3E635",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#A3E635", "#111A05", "#E8FAC6", "#6A9B1E"],
     },
     {
@@ -165,7 +177,8 @@ export const BRANDS: Brand[] = [
         sector: "Vertical · Grupo Dream",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#6366F1",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#6366F1", "#0B0C1F", "#D9DAFB", "#3A3CA8"],
     },
     {
@@ -177,7 +190,8 @@ export const BRANDS: Brand[] = [
         sector: "Vertical · Grupo Dream",
         history: [LOREM],
         guideUrl: "#",
-        accent: "#14B8A6",
+        photosUrl: "#",
+        accent: "#00B2FF",
         palette: ["#14B8A6", "#041614", "#C6F3EE", "#0A7A6E"],
     },
 ]

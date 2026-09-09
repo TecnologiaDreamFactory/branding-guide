@@ -240,6 +240,18 @@ export default function BrandPanel({ brand, index, total, onClose }: Props) {
                             <path d="M7 17 17 7M9 7h8v8" />
                         </svg>
                     </a>
+
+                    <a
+                        className="pn-cta pn-reveal"
+                        href={brand.photosUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span>Fotos</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 17 17 7M9 7h8v8" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </aside>

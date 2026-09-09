@@ -201,7 +201,7 @@
 }
 
 :root[data-theme="light"] :is(.pn, .pn-cta, .mn-btn) {
-    --accent-fg: color-mix(in srgb, var(--accent) 62%, #0b0d14);
+    --accent-fg: color-mix(in srgb, var(--accent) 62%, #010101);
 }
 
 .pn-bracket {
@@ -465,6 +465,10 @@
 
 /* só o CTA do painel carrega o respiro de cima */
 .pn-cta {
+    /* flex, não inline-flex: são dois CTAs agora e precisam empilhar em vez
+       de dividir a linha em tela larga. Largura e padding vêm da regra
+       compartilhada com .mn-btn e não mudam. */
+    display: flex;
     margin-top: clamp(16px, 2.8vh, 40px);
 }
 
